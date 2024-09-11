@@ -1,0 +1,31 @@
+section {
+  max-width: 74rem;
+  margin: auto;
+}
+
+.list-countries {
+  margin-bottom: 70px;
+}
+
+/* Estilos para la barra de scroll */
+.toolbar-container::-webkit-scrollbar {
+  width: 15px; /* Ancho de la barra de scroll */
+}
+
+/* Estilos para el track (fondo de la barra de scroll) */
+.toolbar-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo */
+  border-radius: 10px; /* Redondeado */
+}
+
+/* Estilos para el thumb (el control que se mueve) */
+.toolbar-container::-webkit-scrollbar-thumb {
+  background-color: #007bff; /* Color del control */
+  border-radius: 10px; /* Redondeado */
+  border: 3px solid #f1f1f1; /* Separación alrededor del control */
+}
+
+/* Estilos para el hover del thumb */
+.toolbar-container::-webkit-scrollbar-thumb:hover {
+  background-color: #0056b3; /* Color más oscuro al pasar el ratón */
+}

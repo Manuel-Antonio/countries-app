@@ -1,0 +1,26 @@
+/* Estilos personalizados para el dropdown */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: block; /* Muestra el dropdown */
+  min-width: 100%;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Ocultar el dropdown cuando no es necesario */
+.hide {
+  display: none;
+}
+
+.selected {
+  border: 2px solid #007bff; /* Cambia el color del borde según tu diseño */
+}

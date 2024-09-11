@@ -1,0 +1,43 @@
+<div class="offcanvas offcanvas-end" id="demo">
+  <div class="offcanvas-header">
+    <div class="d-flex align-items-center gap-3">
+      <img
+        [src]="getImageFlagByCode(countryDetail?.code || '')"
+        alt="{{ countryDetail?.name }}"
+        class="mini-flag img-thumbnail"
+        style="width: 40px; height: 25px;"
+      />
+      <div>
+        <h5 class="offcanvas-title mb-0">{{ countryDetail?.name }}</h5>
+        <small class="text-muted">{{ countryDetail?.continent?.name }}</small>
+      </div>
+    </div>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <div class="rounded mb-4">
+      <img [src]="countryDetail?.imageUrl" [alt]="countryDetail?.name" class="img-fluid rounded shadow-sm">
+    </div>
+
+    <div *ngIf="countryDetail?.capital" class="mb-3">
+      <span class="fw-bold text-primary">Capital:</span>
+      <span>{{ countryDetail?.capital }}</span>
+    </div>
+
+    <div class="mb-3">
+      <span class="fw-bold text-primary">Language:</span>
+      <span *ngFor="let language of countryDetail?.languages" class="badge bg-secondary me-1">{{ language.name }}</span>
+    </div>
+
+    <div *ngIf="countryDetail?.currencies" class="mb-3">
+      <span class="fw-bold text-primary">Currency:</span>
+      <span *ngFor="let currency of countryDetail?.currencies" class="badge bg-success me-1">{{ currency }}</span>
+    </div>
+
+    <div *ngIf="statesText">
+      <span class="fw-bold text-primary">Regions:</span>
+      <textarea class="form-control mt-2" rows="4" readonly>{{ statesText }}</textarea>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 position-relative">
+      <div class="input-group mb-4">
+        <span class="input-group-text">País</span>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Escribe el país que deseas ver"
+          aria-label="País"
+          [(ngModel)]="countryName"
+          (focus)="toggleDropdown(true)"
+          (input)="onCountryInput($event)"
+          (click)="toggleDropdown(true)"
+        />
+        <button class="btn btn-primary" type="button" (click)="onSubmit()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </div>
+      <div
+        *ngIf="isDropdownVisible"
+        class="dropdown-menu show p-3 shadow-lg"
+        aria-labelledby="dropdownMenuButton"
+      >
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0 font-weight-bold text-primary">
+            Filtrar por continentes
+          </h5>
+          <button class="btn btn-sm btn-outline-info" (click)="clearAll()">
+            Limpiar todo
+          </button>
+        </div>
+        <div class="row  row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-1">
+          <div *ngFor="let continent of continentsImg" class="col text-center">
+            <button
+              type="button"
+              class="btn btn-light w-100 h-100 p-3 border d-flex flex-column align-items-center justify-content-center"
+              [ngClass]="{
+                'selected bg-light border-info': isSelected(continent.code)
+              }"
+              (click)="toggleSelection(continent.code)"
+            >
+              <img
+                [src]="continent.imageUrl"
+                alt="{{ continent.name }}"
+                class="img-fluid continent-img mb-2"
+                style="max-width: 80px; height: auto"
+              />
+              <p class="mb-0 text-dark fw-bold">{{ continent.name }}</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

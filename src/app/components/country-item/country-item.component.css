@@ -1,0 +1,11 @@
+.country-flag {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 200px; /* Altura fija */
+  object-fit: cover; /* Mantiene la proporción sin deformar */
+}
+
+.mini-flag {
+  width: 40px; /* Tamaño fijo para la mini bandera en el botón */
+  height: 30px;
+  object-fit: cover;
+}

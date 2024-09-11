@@ -1,0 +1,13 @@
+<section>
+  <app-search-items (dataFilters)="getDataFilter($event)"></app-search-items>
+  <!-- Ajustamos el estilo aquí -->
+  <div class="row justify-content-center row-gap-3 toolbar-container" style="max-height: 720px; overflow-y: auto;">
+    <app-country-item
+      class="col col-md-6 col-xl-4"
+      *ngFor="let country of countries"
+      [country]="country"
+      (selected)="onCountrySelected($event)"
+    ></app-country-item>
+  </div>
+</section>
+<app-country-details></app-country-details>
