@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Country } from 'src/app/models/country.model';
 import { CountryService } from 'src/app/services/country.service';
+import { badgeContinentName } from 'src/app/utils/util-simple';
 
 @Component({
   selector: 'app-country-details',
@@ -18,8 +19,6 @@ export class CountryDetailsComponent implements OnInit {
       if (this.countryDetail?.states) {
         this.statesText = this.countryDetail.states.map(state => state.name).join('\n');
       }
-      console.log(result)
-      console.log(this.statesText)
     });
     
   }
@@ -32,6 +31,9 @@ export class CountryDetailsComponent implements OnInit {
     return `https://flagcdn.com/64x48/${codeLower}.png`;
   }
 
+  badgeContinent(code :string): string {
+    return badgeContinentName(code);
+  }
 
 
 }

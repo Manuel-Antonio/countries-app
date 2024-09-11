@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 position-relative">
-      <div class="input-group mb-4">
-        <span class="input-group-text">País</span>
+      <div class="input-group mb-2">
+        
         <input
           type="text"
           class="form-control"
@@ -26,7 +26,7 @@
           <h5 class="mb-0 font-weight-bold text-primary">
             Filtrar por continentes
           </h5>
-          <button class="btn btn-sm btn-outline-info" (click)="clearAll()">
+          <button class="btn  btn-outline-info" (click)="clearAll()">
             Limpiar todo
           </button>
         </div>
@@ -34,9 +34,9 @@
           <div *ngFor="let continent of continentsImg" class="col text-center">
             <button
               type="button"
-              class="btn btn-light w-100 h-100 p-3 border d-flex flex-column align-items-center justify-content-center"
+              class="btn hover-effect w-100 h-100 p-3 border d-flex flex-column align-items-center justify-content-center"
               [ngClass]="{
-                'selected bg-light border-info': isSelected(continent.code)
+                'selected bg-info border-info': isSelected(continent.code)
               }"
               (click)="toggleSelection(continent.code)"
             >

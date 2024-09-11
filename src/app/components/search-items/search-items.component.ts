@@ -1,7 +1,5 @@
 import { Component, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
-import { ContinentImg, continentsImg } from 'src/app/data/continents-img.data';
-
-import { CountryService } from 'src/app/services/country.service';
+import { ContinentImg, continentsImgs } from 'src/app/data/continents-imgs.data';
 
 @Component({
   selector: 'app-search-items',
@@ -20,7 +18,7 @@ export class SearchItemsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.continentsImg = continentsImg
+    this.continentsImg = continentsImgs
   }
 
   @HostListener('document:click', ['$event'])
@@ -32,7 +30,6 @@ export class SearchItemsComponent implements OnInit {
   }
 
   onCountryInput(event: any) {
-    // Lógica para filtrar países en base al input
   }
 
   toggleDropdown(show: boolean) {
@@ -40,7 +37,6 @@ export class SearchItemsComponent implements OnInit {
   }
 
   clearAll() {
-    // Lógica para limpiar todos los filtros
     this.countryName = "";
     this.toggleDropdown(false);
     this.selectedContinents.clear();
@@ -49,7 +45,7 @@ export class SearchItemsComponent implements OnInit {
 
   filterByContinent(continentCode: string) {
     console.log('Filtrar por continente:', continentCode);
-    // Implementa la lógica para filtrar países por continente
+    
   }
   toggleSelection(continentCode: string) {
     if (this.selectedContinents.has(continentCode)) {

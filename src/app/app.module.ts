@@ -9,14 +9,16 @@ import { HttpLink } from 'apollo-angular/http'; // Asegúrate de que este módul
 import { InMemoryCache } from '@apollo/client/core'; // Desde @apollo/client/core
 import { SharedModule } from './components/shared.module';
 import { CountriesPageComponent } from './pages/countries-page/countries-page.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CountriesPageComponent
+    CountriesPageComponent,
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     HttpClientModule,
     ApolloModule,  // ApolloModule para la integración con Angular

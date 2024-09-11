@@ -20,12 +20,12 @@ section {
 
 /* Estilos para el thumb (el control que se mueve) */
 .toolbar-container::-webkit-scrollbar-thumb {
-  background-color: #007bff; /* Color del control */
+  background-color: #e83283; /* Color del control */
   border-radius: 10px; /* Redondeado */
   border: 3px solid #f1f1f1; /* Separación alrededor del control */
 }
 
 /* Estilos para el hover del thumb */
 .toolbar-container::-webkit-scrollbar-thumb:hover {
-  background-color: #0056b3; /* Color más oscuro al pasar el ratón */
+  background-color: #b42766; /* Color más oscuro al pasar el ratón */
 }

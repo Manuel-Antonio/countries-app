@@ -8,18 +8,25 @@ import { Country } from '../models/country.model';
 })
 export class CountryService {
   countryDetailSelected$ = new Subject<Country>();
+  isCountryItemSelected$ = new Subject<string>();
 
   constructor(private apollo: Apollo) {}
 
-  setCountryDetailSelected(value: Country, image: string): void {
-    
+  setCountryDetailSelected(country: Country, image: string): void {
     this.countryDetailSelected$.next({
-      ...value,
-      imageUrl: image
+      ...country,
+      imageUrl: image,
     });
   }
   getCountryDetailSelected(): Observable<Country> {
     return this.countryDetailSelected$.asObservable();
+  }
+
+  setIsCountryItemSelected(codeCountry: string): void {
+    this.isCountryItemSelected$.next(codeCountry);
+  }
+  getIsCountryItemSelected(): Observable<string> {
+    return this.isCountryItemSelected$.asObservable();
   }
 
   filtersCountries(
@@ -39,6 +46,7 @@ export class CountryService {
             name
             code
             continent {
+              code
               name
             }
           }
@@ -56,6 +64,7 @@ export class CountryService {
             code
             continent {
               name
+              code
             }
             capital
             languages {

@@ -1,22 +1,47 @@
-<nav id="sidebar" class="bg-dark p-3 border-end h-100" style="width: 250px;">
-  <div class="d-flex flex-column align-items-center mb-1">
-    <h4 class="text-center">Mi Aplicación</h4>
-  </div>
-  <ul class="nav flex-column">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/" routerLinkActive="active">
-        <i class="bi bi-house-door"></i> Home
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/vista1" routerLinkActive="active">
-        <i class="bi bi-file-earmark"></i> Vista 1
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/vista2" routerLinkActive="active">
-        <i class="bi bi-file-earmark"></i> Vista 2
-      </a>
-    </li>
-  </ul>
-</nav>
+<div >
+  <!-- Botón para ocultar/mostrar el sidebar -->
+  <button class="btn btn-primary" (click)="toggleSidebar()">
+    <i class="fa-solid {{isCollapsed ? 'fa-x':'fa-bars'}}"></i>
+    <span class="ms-1">Menú</span>
+  </button>
+
+  <!-- Nav (sidebar) -->
+  <nav
+    id="sidebar"
+    class="bg-dark text-light {{isCollapsed ? '':'p-3'}} mt-2 h-100 d-flex flex-column transition-sidebar"
+    [ngClass]="{'collapsed': isCollapsed}"
+  >
+    <div class="mb-1 text-center">
+      <h4 class="text-light fw-bold">Mi Aplicación</h4>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item mb-2">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          class="nav-link d-flex align-items-center text-light"
+        >
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a
+          class="nav-link d-flex align-items-center text-light"
+          routerLink="/vista1"
+          routerLinkActive="active"
+        >
+          <span>Vista 1</span>
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a
+          class="nav-link d-flex align-items-center text-light"
+          routerLink="/vista2"
+          routerLinkActive="active"
+        >
+          <span>Vista 2</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

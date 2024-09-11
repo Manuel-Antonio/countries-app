@@ -5,6 +5,7 @@ import { CountryItemComponent } from './country-item/country-item.component';
 import { SearchItemsComponent } from './search-items/search-items.component';
 import { FormsModule } from '@angular/forms';
 import { CountryDetailsComponent } from './country-details/country-details.component';
+import { AlphabetButtonsComponent } from './alphabet-buttons/alphabet-buttons.component';
 
 
 @NgModule({
@@ -12,18 +13,20 @@ import { CountryDetailsComponent } from './country-details/country-details.compo
     SidebarComponent,
     CountryItemComponent,
     SearchItemsComponent,
-    CountryDetailsComponent
+    CountryDetailsComponent,
+    AlphabetButtonsComponent
   ],
   imports: [
     CommonModule,
     FormsModule
-    
+     
   ],
   exports: [
     SidebarComponent,
     CountryItemComponent,
     SearchItemsComponent,
-    CountryDetailsComponent
+    CountryDetailsComponent,
+    AlphabetButtonsComponent
   ]
 })
 export class SharedModule { }

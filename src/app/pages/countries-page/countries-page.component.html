@@ -1,13 +1,16 @@
 <section>
   <app-search-items (dataFilters)="getDataFilter($event)"></app-search-items>
-  <!-- Ajustamos el estilo aquí -->
-  <div class="row justify-content-center row-gap-3 toolbar-container" style="max-height: 720px; overflow-y: auto;">
-    <app-country-item
-      class="col col-md-6 col-xl-4"
-      *ngFor="let country of countries"
-      [country]="country"
-      (selected)="onCountrySelected($event)"
-    ></app-country-item>
+  <app-alphabet-buttons (letterSelected)="getLetterSelected($event)"></app-alphabet-buttons>
+  <div class=" mt-3 ">
+    <h3>Resultados: <span>{{countries.length}}</span></h3>
+    <div class="row justify-content-center row-gap-3 toolbar-container" style="max-height: 600px; overflow-y: auto;">
+      <app-country-item
+        class="col col-md-6 col-xl-4"
+        *ngFor="let country of countries"
+        [country]="country"
+        (selected)="onCountrySelected($event)"
+      ></app-country-item>
+    </div>
   </div>
 </section>
 <app-country-details></app-country-details>

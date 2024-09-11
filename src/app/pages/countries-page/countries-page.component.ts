@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouteConfigLoadEnd } from '@angular/router';
+import { Subscription } from 'apollo-angular';
+import { Subscribable } from 'rxjs';
 import { Country, CountryModel } from 'src/app/models/country.model';
 import { CountryService } from 'src/app/services/country.service';
 import { PixabayService } from 'src/app/services/pixabay.service';
@@ -7,71 +9,69 @@ import { PixabayService } from 'src/app/services/pixabay.service';
 @Component({
   selector: 'app-countries-page',
   templateUrl: './countries-page.component.html',
-  styleUrls: ['./countries-page.component.css']
+  styleUrls: ['./countries-page.component.css'],
 })
 export class CountriesPageComponent implements OnInit {
   countries: any[] = [];
 
-  term: string = "";
+  term: string = '';
   imagenesList: any[] = [];
-  totalImage : number = 0;
-  isValidResult : boolean = false;
+  totalImage: number = 0;
+  isValidResult: boolean = false;
 
-  // totalImagenes : number = 0;
-  // paginaActual : number = 1;
-  // imagenesPorPagina : number = 3;
-  // totalPaginas : number = 0;
-
-  constructor(
-    private countryService: CountryService
-  ) {}
+  constructor(private countryService: CountryService) {}
 
   ngOnInit() {
-    this.countryService.filtersCountries([""],"","","nin").subscribe((result: CountryModel) => {
-      this.countries = result.data.countries.slice(0,20);
-    });
+    this.getDataContries([], 'A', '^', 'nin');
   }
 
-  onCountrySelected(data : {code: string, image:string}) {
-    
-   this.countryService.getCountryByCode(data.code).subscribe((result : CountryModel) => {
-    this.countryService.setCountryDetailSelected(result.data.countries[0], data.image);
-   });
+  onCountrySelected(data: { code: string; image: string }) {
+    this.selectedCountryItem(data.code);
+    this.countryService
+      .getCountryByCode(data.code)
+      .subscribe((result: CountryModel) => {
+        this.countryService.setCountryDetailSelected(
+          result.data.countries[0],
+          data.image
+        );
+      });
   }
 
-  getDataFilter(dataFilter : any) {
-    let optionModified = "in";
-    if(dataFilter.selectedContinents == "" || dataFilter.countryName == "") {
-      optionModified = "nin";
-      console.log("Ahora es nin")
-    }else {
-      console.log("Ahora es in")
-
+  selectedCountryItem(codeCountry:string) {
+    this.countryService.setIsCountryItemSelected(codeCountry);
+  }
+  getDataFilter(dataFilter: any) {
+    let optionModified = '';
+    if (
+      dataFilter.selectedContinents.length > 0 ||
+      dataFilter.countryName != ''
+    ) {
+      optionModified = 'in';
+    } else {
+      optionModified = 'nin';
     }
-    this.countryService.filtersCountries(dataFilter.selectedContinents, dataFilter.countryName,"",optionModified).subscribe((result: CountryModel) => {
-      this.countries = result.data.countries.slice(0,20);
-    });
+    this.getDataContries(
+      dataFilter.selectedContinents,
+      dataFilter.countryName,
+      '',
+      optionModified
+    );
   }
 
-  // // PAGINADO ----------
-  // calcularTotalPaginas() {
-  //   this.totalPaginas =  Math.ceil(this.totalImagenes / this.imagenesPorPagina );
-  // }
+  getDataContries(
+    continent: string[],
+    letter: string,
+    location: string,
+    option: string
+  ) {
+    this.countryService
+      .filtersCountries(continent, letter, location, option)
+      .subscribe((result: CountryModel) => {
+        this.countries = result.data.countries;
+      });
+  }
 
-  // anteriorPagina() {
-  //   if(this.paginaActual === 1) {
-  //     return;
-  //   }
-  //   this.paginaActual--;
-  //   // this.obtenerImagenes(this.term, this.imagenesPorPagina, this.paginaActual);
-  // }
-  // siguientePagina() {
-  //   if(this.paginaActual === this.totalPaginas) {
-  //     return;
-  //   }
-  //   this.paginaActual++;
-  //   // this.obtenerImagenes(this.term, this.imagenesPorPagina, this.paginaActual);
-  // }
-
-
+  getLetterSelected(letterSelected: string) {
+    this.getDataContries([], letterSelected, '^', 'nin');
+  }
 }

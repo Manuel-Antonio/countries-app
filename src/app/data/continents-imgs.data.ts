@@ -4,7 +4,7 @@ export interface ContinentImg {
   imageUrl: string;
 }
 
-export const continentsImg: ContinentImg[] = [
+export const continentsImgs: ContinentImg[] = [
     {
         name: "Africa",
         code: "AF",

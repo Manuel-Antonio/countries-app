@@ -3,8 +3,6 @@
   style="max-width: 20rem"
 >
   <div class="text-center country-flag">
-    <!-- Imagen de la bandera si existe -->
-
     <img
       *ngIf="flagUrl"
       [src]="flagUrl"
@@ -14,7 +12,7 @@
   </div>
   <div
     type="button"
-    class="p-2 d-flex align-items-center gap-2"
+    class="p-2 d-flex align-items-center gap-2 {{this.isSelectedCountryItem ? 'bg-primary':''}}"
     (click)="selectedCountryByCode()"
     type="button"
     data-bs-toggle="offcanvas"
@@ -25,10 +23,9 @@
       alt="{{ country.name }}"
       class="mini-flag"
     />
-    <!-- Nombre del país -->
     <div>
-      <p class="m-0 p-0 fs-5 text-primary fw-bolder">{{ country.name }}</p>
-      <p class="m-0 p-0">{{ country.continent?.name || "" }}</p>
+      <p class="m-0 p-0 fs-5 {{this.isSelectedCountryItem ? 'text-light':'text-primary'}} fw-bolder">{{ country.name }}</p>
+      <p class="badge rounded-pill {{ badgeContinent(country.continent?.code || '')}}">{{ country.continent?.name || "" }}</p>
     </div>
   </div>
 </div>

@@ -24,3 +24,7 @@
 .selected {
   border: 2px solid #007bff; /* Cambia el color del borde según tu diseño */
 }
+
+.hover-effect:hover {
+  background-color: #39cbfb; /* Cambia el color del texto al pasar el mouse */
+}
