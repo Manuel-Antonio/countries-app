@@ -7,25 +7,23 @@ section {
   margin-bottom: 70px;
 }
 
-/* Estilos para la barra de scroll */
+
 .toolbar-container::-webkit-scrollbar {
-  width: 15px; /* Ancho de la barra de scroll */
+  width: 15px; 
 }
 
-/* Estilos para el track (fondo de la barra de scroll) */
 .toolbar-container::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Color de fondo */
-  border-radius: 10px; /* Redondeado */
+  background: #f1f1f1; 
+  border-radius: 10px; 
 }
 
-/* Estilos para el thumb (el control que se mueve) */
+
 .toolbar-container::-webkit-scrollbar-thumb {
-  background-color: #e83283; /* Color del control */
-  border-radius: 10px; /* Redondeado */
-  border: 3px solid #f1f1f1; /* Separación alrededor del control */
+  background-color: #e83283;
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
 }
 
-/* Estilos para el hover del thumb */
 .toolbar-container::-webkit-scrollbar-thumb:hover {
-  background-color: #b42766; /* Color más oscuro al pasar el ratón */
+  background-color: #b42766;
 }

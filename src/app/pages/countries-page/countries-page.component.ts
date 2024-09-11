@@ -1,10 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RouteConfigLoadEnd } from '@angular/router';
-import { Subscription } from 'apollo-angular';
-import { Subscribable } from 'rxjs';
-import { Country, CountryModel } from 'src/app/models/country.model';
+import { Component, OnInit } from '@angular/core';
+import { CountryModel } from 'src/app/models/country.model';
 import { CountryService } from 'src/app/services/country.service';
-import { PixabayService } from 'src/app/services/pixabay.service';
 
 @Component({
   selector: 'app-countries-page',
