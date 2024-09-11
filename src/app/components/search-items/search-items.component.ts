@@ -60,7 +60,6 @@ export class SearchItemsComponent implements OnInit, OnDestroy {
 
   clearAll() {
     this.countryName = '';
-
     this.toggleDropdown(false);
     this.selectedContinents.clear();
     this.onSubmit();

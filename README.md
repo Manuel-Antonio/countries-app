@@ -6,6 +6,7 @@
 
 - **Selección de continentes**: Filtra países por continentes a través de un menú desplegable interactivo.
 - **Búsqueda de países por nombre**: Busca países por nombre con una opción para limitar la búsqueda a un continente específico o realizarla globalmente.
+- **Botones de Búsqueda de países por la primera letra**: Dando mas funcionalidad al usuario, implementé un conjunto de buttons con la letra del alfabeto latino, para una busqueda mas de conjunto y curiosidad para el usuario.
 - **Visualización de países**: Lista de países que se ajusta dinámicamente a la cantidad disponible, con un contenedor que admite desplazamiento vertical.
 - **Sidebar interactivo**: Un menú lateral (sidebar) que se puede abrir/cerrar con animaciones suaves usando Bootstrap 5 y Font Awesome.
 
