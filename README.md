@@ -56,14 +56,16 @@ La búsqueda de países tiene tres posibles escenarios:
 ## 🌐 APIs y recursos externos
 
 - **API de países**: La información de los países puede ser obtenida a través de [REST Countries API](https://countries.trevorblades.com/).
-- **Cloudinary**: Utilizado para optimizar y transformar las imágenes de los países según sea necesario.
+- **Cloudinary**: Utilizado para optimizar y transformar las imágenes de los países según sea necesario [Web Cloudinary](https://cloudinary.com/).
+- **API de flag de paises**: Las imagenes de los flags de paises usados fueron obtenidas de [REST Flagcdn API](https://flagcdn.com/64x48/pe.png).
+- **API de Pixabay**: Las imagenes de paises usados fueron obtenidas de [REST Pixabay API](https://pixabay.com/api/docs/).
 
 ## 📸 Imágenes y Media
 Las imágenes se gestionan a través de **Cloudinary**, donde se utilizan transformaciones de URL para optimizar el tamaño y la carga.
 
 Ejemplo de transformación:
 \`\`\`url
-https://res.cloudinary.com/demo/image/upload/w_400,h_300/country_flag.png
+https://res.cloudinary.com/djsl4a5py/image/upload/w_100,h_100/v1726006751/Countries_Web/Continents/Africa_e1nxfy.webp
 \`\`\`
 
 ## 🎨 Estilos y Responsividad
