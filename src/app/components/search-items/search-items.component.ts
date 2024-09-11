@@ -60,10 +60,11 @@ export class SearchItemsComponent implements OnInit, OnDestroy {
 
   clearAll() {
     this.countryName = '';
-    this.countryService.setLetterSelected('');
+
     this.toggleDropdown(false);
     this.selectedContinents.clear();
     this.onSubmit();
+    this.countryService.setLetterSelected('A');
   }
 
   toggleSelection(continentCode: string) {

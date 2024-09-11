@@ -88,16 +88,16 @@ export class CountryService {
     });
   }
 
-  getContinets(): Observable<any> {
-    return this.apollo.query({
-      query: gql`
-        query {
-          continents {
-            name
-            code
-          }
-        }
-      `,
-    });
-  }
+  // getContinets(): Observable<any> {
+  //   return this.apollo.query({
+  //     query: gql`
+  //       query {
+  //         continents {
+  //           name
+  //           code
+  //         }
+  //       }
+  //     `,
+  //   });
+  // }
 }

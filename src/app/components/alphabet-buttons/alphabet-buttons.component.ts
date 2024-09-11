@@ -13,6 +13,7 @@ export class AlphabetButtonsComponent implements OnInit {
   constructor(private countryService: CountryService) {}
 
   ngOnInit() {
+    this.selectedLetter = "A";
     this.countryService.getLetterSelected().subscribe((letterData) => {
       this.selectedLetter = letterData;
     });
