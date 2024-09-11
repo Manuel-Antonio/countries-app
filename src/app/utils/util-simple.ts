@@ -1,13 +1,13 @@
 import { continentsImgs } from "../data/continents-imgs.data";
 
-export function badgeContinentName(codeContinent :string): string {
+export function bgByCode(valueCode :string): string {
     const continents = continentsImgs.map(({ code }) => code);
     
-    switch (codeContinent) {
+    switch (valueCode) {
       case continents[0]:
         return 'bg-primary';
       case continents[1]:
-        return 'bg-secondary';
+        return 'bg-secondary text-dark';
       case continents[2]:
         return 'bg-success';
       case continents[3]:
@@ -21,4 +21,4 @@ export function badgeContinentName(codeContinent :string): string {
       default:
         return 'bg-light';
     }
-  }
+}

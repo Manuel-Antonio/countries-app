@@ -6,6 +6,8 @@ import { SearchItemsComponent } from './search-items/search-items.component';
 import { FormsModule } from '@angular/forms';
 import { CountryDetailsComponent } from './country-details/country-details.component';
 import { AlphabetButtonsComponent } from './alphabet-buttons/alphabet-buttons.component';
+import { LoaderComponent } from './loader/loader.component';
+import { RouterLink } from '@angular/router';
 
 
 @NgModule({
@@ -14,11 +16,13 @@ import { AlphabetButtonsComponent } from './alphabet-buttons/alphabet-buttons.co
     CountryItemComponent,
     SearchItemsComponent,
     CountryDetailsComponent,
-    AlphabetButtonsComponent
+    AlphabetButtonsComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    RouterLink
      
   ],
   exports: [
@@ -26,7 +30,8 @@ import { AlphabetButtonsComponent } from './alphabet-buttons/alphabet-buttons.co
     CountryItemComponent,
     SearchItemsComponent,
     CountryDetailsComponent,
-    AlphabetButtonsComponent
+    AlphabetButtonsComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule { }

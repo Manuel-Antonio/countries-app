@@ -1,17 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Country } from 'src/app/models/country.model';
 import { CountryService } from 'src/app/services/country.service';
 import { PixabayService } from 'src/app/services/pixabay.service';
-import { badgeContinentName } from 'src/app/utils/util-simple';
+import { bgByCode } from 'src/app/utils/util-simple';
 @Component({
   selector: 'app-country-item',
   templateUrl: './country-item.component.html',
   styleUrls: ['./country-item.component.css'],
 })
-export class CountryItemComponent implements OnInit {
+export class CountryItemComponent implements OnInit, OnDestroy {
   @Input() country!: Country;
   @Output() selected = new EventEmitter<{ code: string; image: string }>();
-
+  subscription !: Subscription
+  
   isSelected: boolean = false;
   flagUrl: string = '';
   isSelectedCountryItem: boolean = false;
@@ -19,6 +21,9 @@ export class CountryItemComponent implements OnInit {
     private pixabayService: PixabayService,
     private countryService: CountryService
   ) {}
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit() {
     this.getImageByName(`country ${this.country.name}`);
@@ -41,7 +46,7 @@ export class CountryItemComponent implements OnInit {
   }
 
   getImageByName(value: string) {
-    this.pixabayService.getImagenes(value, 3, 1).subscribe((urlImagen) => {
+    this.subscription = this.pixabayService.getImagenes(value, 3, 1).subscribe((urlImagen) => {
       if (urlImagen) {
         this.flagUrl = urlImagen;
       } else {
@@ -58,6 +63,6 @@ export class CountryItemComponent implements OnInit {
   }
 
   badgeContinent(code :string): string {
-    return badgeContinentName(code);
+    return bgByCode(code);
   }
 }

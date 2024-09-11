@@ -5,19 +5,32 @@
         [src]="getImageFlagByCode(countryDetail?.code || '')"
         alt="{{ countryDetail?.name }}"
         class="mini-flag img-thumbnail"
-        style="width: 40px; height: 30px;"
+        style="width: 40px; height: 30px"
       />
       <div>
         <h3 class="offcanvas-title mb-0">{{ countryDetail?.name }}</h3>
-        <small class="badge mt-1 fs-6 {{badgeContinent(countryDetail?.continent?.code || '')}}">{{ countryDetail?.continent?.name }}</small>
+        <small
+          class="badge mt-1 fs-6 {{
+            badgeContinent(countryDetail?.continent?.code || '')
+          }}"
+          >{{ countryDetail?.continent?.name }}</small
+        >
       </div>
     </div>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+    ></button>
   </div>
 
   <div class="offcanvas-body">
     <div class="rounded mb-3" *ngIf="countryDetail?.name">
-      <img [src]="countryDetail?.imageUrl" [alt]="countryDetail?.name" class="img-fluid rounded shadow-sm">
+      <img
+        [src]="countryDetail?.imageUrl"
+        [alt]="countryDetail?.name"
+        class="img-fluid rounded shadow-sm"
+      />
     </div>
 
     <div *ngIf="countryDetail?.capital" class="mb-2">
@@ -26,18 +39,30 @@
     </div>
 
     <div class="mb-2" *ngIf="countryDetail?.languages?.length != 0">
-      <p class="fw-bold text-info fs-5 mb-0 ">Language:</p>
-      <span *ngFor="let language of countryDetail?.languages" class="badge bg-secondary me-1">{{ language.name }}</span>
+      <p class="fw-bold text-info fs-5 mb-0">Language:</p>
+      <span
+        *ngFor="let language of countryDetail?.languages"
+        class="badge bg-secondary me-1"
+        >{{ language.name }}</span
+      >
     </div>
 
     <div class="mb-2" *ngIf="countryDetail?.currencies?.length != 0">
       <p class="fw-bold text-info fs-5 mb-0">Currency:</p>
-      <span *ngFor="let currency of countryDetail?.currencies">{{ currency }}</span>
+      <div class="d-flex gap-1 flex-wrap">
+        <span
+          *ngFor="let currency of countryDetail?.currencies"
+          class="badge bg-light"
+          >{{ currency }}</span
+        >
+      </div>
     </div>
 
-    <div *ngIf="statesText" >
+    <div *ngIf="statesText">
       <p class="fw-bold text-info fs-5 mb-1">Regions:</p>
-      <textarea class="form-control" rows="4" readonly>{{ statesText }}</textarea>
+      <textarea class="form-control" rows="4" readonly>{{
+        statesText
+      }}</textarea>
     </div>
   </div>
 </div>

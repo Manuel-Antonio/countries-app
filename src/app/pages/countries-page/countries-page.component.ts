@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { CountryModel } from 'src/app/models/country.model';
 import { CountryService } from 'src/app/services/country.service';
 
@@ -7,15 +8,20 @@ import { CountryService } from 'src/app/services/country.service';
   templateUrl: './countries-page.component.html',
   styleUrls: ['./countries-page.component.css'],
 })
-export class CountriesPageComponent implements OnInit {
-  countries: any[] = [];
+export class CountriesPageComponent implements OnInit, OnDestroy {
+  subscription !: Subscription
 
+  countries: any[] = [];
   term: string = '';
   imagenesList: any[] = [];
   totalImage: number = 0;
   isValidResult: boolean = false;
+  isLoading : boolean = true;
 
   constructor(private countryService: CountryService) {}
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit() {
     this.getDataCountries([], 'A', '^', 'nin');
@@ -23,7 +29,7 @@ export class CountriesPageComponent implements OnInit {
 
   onCountrySelected(data: { code: string; image: string }) {
     this.selectedCountryItem(data.code);
-    this.countryService
+    this.subscription = this.countryService
       .getCountryByCode(data.code)
       .subscribe((result: CountryModel) => {
         this.countryService.setCountryDetailSelected(
@@ -69,10 +75,12 @@ export class CountriesPageComponent implements OnInit {
     locationLetter: string,
     conditional: string
   ) {
-    this.countryService
+    this.isLoading = true;
+    this.subscription = this.countryService
       .filtersCountries(continent, letter, locationLetter, conditional)
       .subscribe((result: CountryModel) => {
         this.countries = result.data.countries;
+        setTimeout(() => {this.isLoading = false;},200)
       });
   }
 

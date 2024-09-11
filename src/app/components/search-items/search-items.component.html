@@ -1,7 +1,7 @@
 <div>
   <div class="row justify-content-center ">
-    <div class="col-12 col-md-8 position-relative d-flex gap-0 gap-md-2 ">
-      <div class="input-group mb-2">
+    <div class="col-12 col-md-8 position-relative d-flex gap-0 gap-md-2">
+      <div class="input-group mb-2 ">
         <button 
         class="btn btn-light d-flex align-items-center d-inline-block d-flex justify-content-center align-content-center"
         type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
@@ -17,6 +17,7 @@
           [(ngModel)]="countryName"
           (focus)="toggleDropdown(true)"
           (click)="toggleDropdown(true)"
+          autocomplete="off"
         />
         <button class="btn btn-primary" type="button" (click)="onSubmit()">
           <i class="fa-solid fa-magnifying-glass"></i>

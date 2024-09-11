@@ -5,7 +5,9 @@ import {
   Output,
   EventEmitter,
   ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 import {
   ContinentImg,
   continentsImgs,
@@ -17,7 +19,9 @@ import { CountryService } from 'src/app/services/country.service';
   templateUrl: './search-items.component.html',
   styleUrls: ['./search-items.component.css'],
 })
-export class SearchItemsComponent implements OnInit {
+export class SearchItemsComponent implements OnInit, OnDestroy {
+  subscription !: Subscription
+
   countryName: string = '';
   continentsImg: ContinentImg[] = [];
   isDropdownVisible = false;
@@ -27,12 +31,13 @@ export class SearchItemsComponent implements OnInit {
   @Output() dataFilters = new EventEmitter<any>();
 
   constructor(private countryService: CountryService) {}
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngOnInit() {
     this.continentsImg = continentsImgs;
-    this.countryService.getLetterSelected().subscribe((data) => {
-      console.log("Letter selected event triggered",data);
-      
+    this.subscription = this.countryService.getLetterSelected().subscribe((data) => {
       if(data) {
         this.countryName = '';
         this.selectedContinents.clear();
