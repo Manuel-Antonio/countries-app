@@ -1,6 +1,3 @@
-# Here's the content of the README.md file
-
-readme_content = """
 # 🌍 Country Explorer Project
 
 **Country Explorer** es una aplicación web que permite a los usuarios explorar países, seleccionando continentes y filtrando por nombre de país, todo a través de una interfaz simple y amigable. Este proyecto usa **Angular** como framework principal y varias tecnologías y recursos complementarios para ofrecer una experiencia optimizada y eficiente.
