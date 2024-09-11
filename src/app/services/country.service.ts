@@ -9,8 +9,16 @@ import { Country } from '../models/country.model';
 export class CountryService {
   countryDetailSelected$ = new Subject<Country>();
   isCountryItemSelected$ = new Subject<string>();
+  letterSelected$ = new Subject<string>();
 
   constructor(private apollo: Apollo) {}
+
+  setLetterSelected(letter: string): void {
+    this.letterSelected$.next(letter);
+  }
+  getLetterSelected(): Observable<string> {
+    return this.letterSelected$.asObservable();
+  }
 
   setCountryDetailSelected(country: Country, image: string): void {
     this.countryDetailSelected$.next({
@@ -32,16 +40,16 @@ export class CountryService {
   filtersCountries(
     continent: string[],
     letter: string,
-    location: string,
-    option: string
+    locationLetter: string,
+    conditional: string
   ): Observable<any> {
     return this.apollo.query({
       query: gql`
         query {
           countries(
-            filter: { continent: { ${option}:${JSON.stringify(
+            filter: { continent: { ${conditional}: ${JSON.stringify(
         continent
-      )} }, name: { regex: "${location + letter}" } }
+      )} }, name: { regex: "${locationLetter + letter}" } }
           ) {
             name
             code

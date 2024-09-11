@@ -1,6 +1,5 @@
 <div>
   <div class="row justify-content-center ">
-
     <div class="col-12 col-md-8 position-relative d-flex gap-0 gap-md-2 ">
       <div class="input-group mb-2">
         <button 
@@ -12,12 +11,11 @@
         </button>
         <input
           type="text"
-          class="form-control"
+          class="form-control text-dark inputCountryName"
           placeholder="Escribe el país que deseas ver"
           aria-label="País"
           [(ngModel)]="countryName"
           (focus)="toggleDropdown(true)"
-          (input)="onCountryInput($event)"
           (click)="toggleDropdown(true)"
         />
         <button class="btn btn-primary" type="button" (click)="onSubmit()">

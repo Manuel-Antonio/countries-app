@@ -1,6 +1,10 @@
 <div
   class="card border-primary overflow-hidden shadow"
   style="max-width: 20rem"
+  (click)="selectedCountryByCode()"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#demo"
 >
   <div class="text-center country-flag">
     <img
@@ -8,24 +12,35 @@
       [src]="flagUrl"
       alt="{{ country.name }} Flag"
       class="country-flag card-img-top"
+      loading="lazy"
     />
   </div>
   <div
-    type="button"
-    class="p-2 d-flex align-items-center gap-2 {{this.isSelectedCountryItem ? 'bg-primary':''}}"
-    (click)="selectedCountryByCode()"
-    type="button"
-    data-bs-toggle="offcanvas"
-    data-bs-target="#demo"
+    class="p-2 d-flex align-items-center gap-2 {{
+      this.isSelectedCountryItem ? 'bg-primary' : ''
+    }}"
   >
     <img
       [src]="getImageFlagByCode(country.code || '')"
       alt="{{ country.name }}"
       class="mini-flag"
+      loading="lazy"
     />
     <div>
-      <p class="m-0 p-0 fs-5 {{this.isSelectedCountryItem ? 'text-light':'text-primary'}} fw-bolder">{{ country.name }}</p>
-      <p class="badge rounded-pill {{ badgeContinent(country.continent?.code || '')}}">{{ country.continent?.name || "" }}</p>
+      <p
+        class="m-0 p-0 fs-5 {{
+          this.isSelectedCountryItem ? 'text-light' : 'text-primary'
+        }} fw-bolder"
+      >
+        {{ country.name }}
+      </p>
+      <p
+        class="badge rounded-pill {{
+          badgeContinent(country.continent?.code || '')
+        }}"
+      >
+        {{ country.continent?.name || "" }}
+      </p>
     </div>
   </div>
 </div>

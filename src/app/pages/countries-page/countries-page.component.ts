@@ -18,7 +18,7 @@ export class CountriesPageComponent implements OnInit {
   constructor(private countryService: CountryService) {}
 
   ngOnInit() {
-    this.getDataContries([], 'A', '^', 'nin');
+    this.getDataCountries([], 'A', '^', 'nin');
   }
 
   onCountrySelected(data: { code: string; image: string }) {
@@ -33,41 +33,50 @@ export class CountriesPageComponent implements OnInit {
       });
   }
 
-  selectedCountryItem(codeCountry:string) {
+  selectedCountryItem(codeCountry: string) {
     this.countryService.setIsCountryItemSelected(codeCountry);
   }
   getDataFilter(dataFilter: any) {
     let optionModified = '';
-    if (
-      dataFilter.selectedContinents.length > 0 ||
-      dataFilter.countryName != ''
-    ) {
-      optionModified = 'in';
-    } else {
+    const {countryName, selectedContinents} = dataFilter;
+    let countryNameSearch = countryName;
+    let matchPattern = '';
+
+    if (dataFilter.countryName && selectedContinents.length === 0) {
       optionModified = 'nin';
+      matchPattern = '';
+    } else if (selectedContinents.length > 0) {
+      optionModified = 'in';
+      matchPattern = dataFilter.countryName ? '' : '^';
+    } else {
+     
+      optionModified = 'nin';
+      countryNameSearch = 'A'; 
+      matchPattern = '^';
     }
-    this.getDataContries(
-      dataFilter.selectedContinents,
-      dataFilter.countryName,
-      '',
+
+    this.getDataCountries(
+      selectedContinents,
+      countryNameSearch,
+      matchPattern,
       optionModified
     );
   }
 
-  getDataContries(
+  getDataCountries(
     continent: string[],
     letter: string,
-    location: string,
-    option: string
+    locationLetter: string,
+    conditional: string
   ) {
     this.countryService
-      .filtersCountries(continent, letter, location, option)
+      .filtersCountries(continent, letter, locationLetter, conditional)
       .subscribe((result: CountryModel) => {
         this.countries = result.data.countries;
       });
   }
 
   getLetterSelected(letterSelected: string) {
-    this.getDataContries([], letterSelected, '^', 'nin');
+    this.getDataCountries([], letterSelected, '^', 'nin');
   }
 }

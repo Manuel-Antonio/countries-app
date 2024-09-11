@@ -18,11 +18,6 @@
 .hide {
   display: none;
 }
-
-.selected {
-  border: 2px solid #007bff;
-}
-
-.hover-effect:hover {
-  background-color: #39cbfb;
+.inputCountryName::placeholder {
+  color:#949494
 }

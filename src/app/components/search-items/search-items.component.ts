@@ -1,24 +1,44 @@
-import { Component, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
-import { ContinentImg, continentsImgs } from 'src/app/data/continents-imgs.data';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  Output,
+  EventEmitter,
+  ChangeDetectorRef,
+} from '@angular/core';
+import {
+  ContinentImg,
+  continentsImgs,
+} from 'src/app/data/continents-imgs.data';
+import { CountryService } from 'src/app/services/country.service';
 
 @Component({
   selector: 'app-search-items',
   templateUrl: './search-items.component.html',
-  styleUrls: ['./search-items.component.css']
+  styleUrls: ['./search-items.component.css'],
 })
 export class SearchItemsComponent implements OnInit {
-  countryName: string = "";
-  continentsImg: ContinentImg[]  = [];
+  countryName: string = '';
+  continentsImg: ContinentImg[] = [];
   isDropdownVisible = false;
   dropdownClicked = false;
   selectedContinents: Set<string> = new Set();
 
   @Output() dataFilters = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private countryService: CountryService) {}
 
   ngOnInit() {
-    this.continentsImg = continentsImgs
+    this.continentsImg = continentsImgs;
+    this.countryService.getLetterSelected().subscribe((data) => {
+      console.log("Letter selected event triggered",data);
+      
+      if(data) {
+        this.countryName = '';
+        this.selectedContinents.clear();
+      }
+      
+    });
   }
 
   @HostListener('document:click', ['$event'])
@@ -29,15 +49,13 @@ export class SearchItemsComponent implements OnInit {
     }
   }
 
-  onCountryInput(event: any) {
-  }
-
   toggleDropdown(show: boolean) {
     this.isDropdownVisible = show;
   }
 
   clearAll() {
-    this.countryName = "";
+    this.countryName = '';
+    this.countryService.setLetterSelected('');
     this.toggleDropdown(false);
     this.selectedContinents.clear();
     this.onSubmit();
@@ -45,8 +63,8 @@ export class SearchItemsComponent implements OnInit {
 
   filterByContinent(continentCode: string) {
     console.log('Filtrar por continente:', continentCode);
-    
   }
+
   toggleSelection(continentCode: string) {
     if (this.selectedContinents.has(continentCode)) {
       this.selectedContinents.delete(continentCode);
@@ -60,10 +78,21 @@ export class SearchItemsComponent implements OnInit {
   }
 
   onSubmit() {
-   
+    const countryNameSearch = this.countryName
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+    this.countryService.setLetterSelected('');
+    let capitalizedCountryName = '';
+    if (countryNameSearch) {
+      capitalizedCountryName =
+        countryNameSearch.charAt(0).toUpperCase() + countryNameSearch.slice(1);
+    }
+
     this.dataFilters.emit({
-      countryName: this.countryName,
-      selectedContinents: Array.from(this.selectedContinents)
+      countryName: capitalizedCountryName,
+      selectedContinents: Array.from(this.selectedContinents),
     });
   }
 }
