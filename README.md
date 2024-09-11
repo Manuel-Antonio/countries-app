@@ -11,7 +11,6 @@ readme_content = """
 - **Búsqueda de países por nombre**: Busca países por nombre con una opción para limitar la búsqueda a un continente específico o realizarla globalmente.
 - **Visualización de países**: Lista de países que se ajusta dinámicamente a la cantidad disponible, con un contenedor que admite desplazamiento vertical.
 - **Sidebar interactivo**: Un menú lateral (sidebar) que se puede abrir/cerrar con animaciones suaves usando Bootstrap 5 y Font Awesome.
-- **Scroll-to-top button**: Un botón que aparece cuando no se está en la parte superior de la página y desaparece al hacer scroll.
 
 ## 🛠️ Tecnologías utilizadas
 
@@ -26,25 +25,13 @@ readme_content = """
 
 El proyecto sigue los principios **SOLID** para asegurar una buena mantenibilidad y escalabilidad:
 
-\`\`\`bash
-src/
-├── app/
-│   ├── components/
-│   │   ├── header/
-│   │   ├── sidebar/
-│   │   ├── scroll-to-top/
-│   │   └── country-list/
-│   ├── pages/
-│   │   └── country-explorer/
-│   ├── services/
-│   └── models/
-└── assets/
-\`\`\`
-
-- **components/**: Contiene componentes reutilizables como el header, sidebar y la lista de países.
+- **components/**: Contiene componentes reutilizables como el country-item, country-details, sidebar, loader, alphabet-buttons y search-items.
+- **data/**: Contiene un archivo .ts con data referente a su propio nombre.
+- **models/**: Definición de tipos y modelos de datos.
 - **pages/**: Páginas individuales de la aplicación.
 - **services/**: Servicios para manejar la lógica de negocio.
-- **models/**: Definición de tipos y modelos de datos.
+- **utils/**: Contiene un archivo .ts con las fnuciones utilizadas en otros compontes.
+
 
 ## 💻 Funcionalidad
 
@@ -69,20 +56,9 @@ La búsqueda de países tiene tres posibles escenarios:
 - Si hay un continente seleccionado, se limita la búsqueda a ese continente.
 - Si no hay selección, se busca por países que comiencen con la letra 'A' de forma predeterminada.
 
-\`\`\`typescript
-let optionModified = '';
-let countryName = 'A';
-
-if (countryName && selectedContinents.size === 0) {
-  optionModified = 'nin';
-} else {
-  optionModified = 'in';
-}
-\`\`\`
-
 ## 🌐 APIs y recursos externos
 
-- **API de países**: La información de los países puede ser obtenida a través de [REST Countries API](https://restcountries.com/).
+- **API de países**: La información de los países puede ser obtenida a través de [REST Countries API](https://countries.trevorblades.com/).
 - **Cloudinary**: Utilizado para optimizar y transformar las imágenes de los países según sea necesario.
 
 ## 📸 Imágenes y Media
@@ -90,7 +66,7 @@ Las imágenes se gestionan a través de **Cloudinary**, donde se utilizan transf
 
 Ejemplo de transformación:
 \`\`\`url
-https://res.cloudinary.com/demo/image/upload/w_400,h_300,c_fill/country_flag.png
+https://res.cloudinary.com/demo/image/upload/w_400,h_300/country_flag.png
 \`\`\`
 
 ## 🎨 Estilos y Responsividad
@@ -101,11 +77,4 @@ El diseño se asegura de ser completamente **responsive**, adaptándose a pantal
 
 ¡Las contribuciones son bienvenidas! Si deseas contribuir, por favor abre un issue o envía un pull request con tus mejoras o sugerencias.
 
-## 📜 Licencia
-
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 """
-
-# Saving the README file
-with open("/mnt/data/README.md", "w") as readme_file:
-    readme_file.write(readme_content)
