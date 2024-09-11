@@ -40,6 +40,9 @@ export class CountryItemComponent implements OnInit, OnDestroy {
 
   selectedCountryItem() {
     this.countryService.getIsCountryItemSelected().subscribe((letter) => {
+      if(this.isSelectedCountryItem && this.country.code == letter) {
+        return;
+       }
       if (this.country.code == letter) {
         this.isSelectedCountryItem = !this.isSelectedCountryItem;
       } else {
