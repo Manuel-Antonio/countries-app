@@ -1,47 +1,43 @@
-<div >
-  <!-- Botón para ocultar/mostrar el sidebar -->
-  <button class="btn btn-primary" (click)="toggleSidebar()">
-    <i class="fa-solid {{isCollapsed ? 'fa-x':'fa-bars'}}"></i>
-    <span class="ms-1">Menú</span>
-  </button>
-
-  <!-- Nav (sidebar) -->
-  <nav
-    id="sidebar"
-    class="bg-dark text-light {{isCollapsed ? '':'p-3'}} mt-2 h-100 d-flex flex-column transition-sidebar"
-    [ngClass]="{'collapsed': isCollapsed}"
-  >
-    <div class="mb-1 text-center">
-      <h4 class="text-light fw-bold">Mi Aplicación</h4>
-    </div>
-    <ul class="nav flex-column">
-      <li class="nav-item mb-2">
-        <a
-          routerLink="/"
-          routerLinkActive="active"
-          class="nav-link d-flex align-items-center text-light"
-        >
-          <span>Home</span>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a
-          class="nav-link d-flex align-items-center text-light"
-          routerLink="/vista1"
-          routerLinkActive="active"
-        >
-          <span>Vista 1</span>
-        </a>
-      </li>
-      <li class="nav-item mb-2">
-        <a
-          class="nav-link d-flex align-items-center text-light"
-          routerLink="/vista2"
-          routerLinkActive="active"
-        >
-          <span>Vista 2</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
+<div class="offcanvas offcanvas-start" id="sidebar">
+  <div class="offcanvas-header">
+    <h1 class="offcanvas-title">Mi Aplicación</h1>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <nav>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2">
+          <a
+            href="/"
+            routerLinkActive="active"
+            class="nav-link d-flex align-items-center text-light"
+          >
+            <span>Home</span>
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a
+            class="nav-link d-flex align-items-center text-light"
+            href="/vista1"
+            routerLinkActive="active"
+          >
+            <span>Vista 1</span>
+          </a>
+        </li>
+        <li class="nav-item mb-2">
+          <a
+            class="nav-link d-flex align-items-center text-light"
+            href="/vista2"
+            routerLinkActive="active"
+          >
+            <span>Vista 2</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </div>

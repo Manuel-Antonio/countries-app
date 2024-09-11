@@ -66,6 +66,4 @@ export class SearchItemsComponent implements OnInit {
       selectedContinents: Array.from(this.selectedContinents)
     });
   }
-
-
 }
