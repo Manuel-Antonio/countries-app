@@ -7,26 +7,26 @@ import { Vista2PageComponent } from './pages/vista2-page/vista2-page.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: CountriesPageComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
-    path: "vista1",
-    component: Vista1PageComponent
+    path: 'vista1',
+    component: Vista1PageComponent,
   },
   {
-    path: "vista2",
-    component: Vista2PageComponent
+    path: 'vista2',
+    component: Vista2PageComponent,
   },
   {
     path: '**',
-    component: NotFoundPageComponent
-  }
+    component: NotFoundPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

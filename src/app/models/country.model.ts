@@ -1,20 +1,18 @@
-import { Continent } from "./continent.model";
+import { Continent } from './continent.model';
 
 export interface CountryModel {
-    data: DataCountry;
+  data: DataCountry;
 }
 export interface DataCountry {
-    countries: Country[];
+  countries: Country[];
 }
 export interface Country {
-    name?:       string;
-    code?:       string;
-    continent?:  Continent;
-    capital?:    string;
-    languages?:  Continent[];
-    currencies?: string[];
-    states?:     any[];
-    imageUrl?:   string;
+  name?: string;
+  code?: string;
+  continent?: Continent;
+  capital?: string;
+  languages?: Continent[];
+  currencies?: string[];
+  states?: any[];
+  imageUrl?: string;
 }
-
-

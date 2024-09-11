@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Country } from 'src/app/models/country.model';
 import { CountryService } from 'src/app/services/country.service';
-import { bgByCode } from 'src/app/utils/util-simple';
+import { bgByCode, getImageFlagByCode } from 'src/app/utils/util-simple';
 
 @Component({
   selector: 'app-country-details',
@@ -32,9 +32,9 @@ export class CountryDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {}
-  getImageFlagByCode(code: string) {
-    const codeLower = code.toLowerCase();
-    return `https://flagcdn.com/64x48/${codeLower}.png`;
+  
+  getImageFlagByCode(code: string) : string {
+    return getImageFlagByCode(code);
   }
 
   badgeContinent(code: string): string {

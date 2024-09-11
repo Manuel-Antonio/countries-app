@@ -1,9 +1,17 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Country } from 'src/app/models/country.model';
 import { CountryService } from 'src/app/services/country.service';
 import { PixabayService } from 'src/app/services/pixabay.service';
-import { bgByCode } from 'src/app/utils/util-simple';
+import { bgByCode, getImageFlagByCode } from 'src/app/utils/util-simple';
+
 @Component({
   selector: 'app-country-item',
   templateUrl: './country-item.component.html',
@@ -12,8 +20,8 @@ import { bgByCode } from 'src/app/utils/util-simple';
 export class CountryItemComponent implements OnInit, OnDestroy {
   @Input() country!: Country;
   @Output() selected = new EventEmitter<{ code: string; image: string }>();
-  subscription !: Subscription
-  
+  subscription!: Subscription;
+
   isSelected: boolean = false;
   flagUrl: string = '';
   isSelectedCountryItem: boolean = false;
@@ -40,19 +48,20 @@ export class CountryItemComponent implements OnInit, OnDestroy {
     });
   }
 
-  getImageFlagByCode(code: string) {
-    const codeLower = code.toLowerCase();
-    return `https://flagcdn.com/64x48/${codeLower}.png`;
+  getImageFlagByCode(code: string): string {
+    return getImageFlagByCode(code);
   }
 
   getImageByName(value: string) {
-    this.subscription = this.pixabayService.getImagenes(value, 3, 1).subscribe((urlImagen) => {
-      if (urlImagen) {
-        this.flagUrl = urlImagen;
-      } else {
-        this.flagUrl = '';
-      }
-    });
+    this.subscription = this.pixabayService
+      .getImagenes(value, 3, 1)
+      .subscribe((urlImagen) => {
+        if (urlImagen) {
+          this.flagUrl = urlImagen;
+        } else {
+          this.flagUrl = '';
+        }
+      });
   }
 
   selectedCountryByCode() {
@@ -62,7 +71,7 @@ export class CountryItemComponent implements OnInit, OnDestroy {
     });
   }
 
-  badgeContinent(code :string): string {
+  badgeContinent(code: string): string {
     return bgByCode(code);
   }
 }

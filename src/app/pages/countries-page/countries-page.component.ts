@@ -9,14 +9,14 @@ import { CountryService } from 'src/app/services/country.service';
   styleUrls: ['./countries-page.component.css'],
 })
 export class CountriesPageComponent implements OnInit, OnDestroy {
-  subscription !: Subscription
+  subscription!: Subscription;
 
   countries: any[] = [];
   term: string = '';
   imagenesList: any[] = [];
   totalImage: number = 0;
   isValidResult: boolean = false;
-  isLoading : boolean = true;
+  isLoading: boolean = true;
 
   constructor(private countryService: CountryService) {}
   ngOnDestroy(): void {
@@ -44,7 +44,7 @@ export class CountriesPageComponent implements OnInit, OnDestroy {
   }
   getDataFilter(dataFilter: any) {
     let optionModified = '';
-    const {countryName, selectedContinents} = dataFilter;
+    const { countryName, selectedContinents } = dataFilter;
     let countryNameSearch = countryName;
     let matchPattern = '';
 
@@ -55,9 +55,8 @@ export class CountriesPageComponent implements OnInit, OnDestroy {
       optionModified = 'in';
       matchPattern = dataFilter.countryName ? '' : '^';
     } else {
-     
       optionModified = 'nin';
-      countryNameSearch = 'A'; 
+      countryNameSearch = 'A';
       matchPattern = '^';
     }
 
@@ -80,7 +79,9 @@ export class CountriesPageComponent implements OnInit, OnDestroy {
       .filtersCountries(continent, letter, locationLetter, conditional)
       .subscribe((result: CountryModel) => {
         this.countries = result.data.countries;
-        setTimeout(() => {this.isLoading = false;},200)
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 200);
       });
   }
 

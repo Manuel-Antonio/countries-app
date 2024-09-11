@@ -4,7 +4,6 @@ import {
   HostListener,
   Output,
   EventEmitter,
-  ChangeDetectorRef,
   OnDestroy,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -20,7 +19,7 @@ import { CountryService } from 'src/app/services/country.service';
   styleUrls: ['./search-items.component.css'],
 })
 export class SearchItemsComponent implements OnInit, OnDestroy {
-  subscription !: Subscription
+  subscription!: Subscription;
 
   countryName: string = '';
   continentsImg: ContinentImg[] = [];
@@ -37,13 +36,14 @@ export class SearchItemsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.continentsImg = continentsImgs;
-    this.subscription = this.countryService.getLetterSelected().subscribe((data) => {
-      if(data) {
-        this.countryName = '';
-        this.selectedContinents.clear();
-      }
-      
-    });
+    this.subscription = this.countryService
+      .getLetterSelected()
+      .subscribe((data) => {
+        if (data) {
+          this.countryName = '';
+          this.selectedContinents.clear();
+        }
+      });
   }
 
   @HostListener('document:click', ['$event'])
@@ -64,10 +64,6 @@ export class SearchItemsComponent implements OnInit, OnDestroy {
     this.toggleDropdown(false);
     this.selectedContinents.clear();
     this.onSubmit();
-  }
-
-  filterByContinent(continentCode: string) {
-    console.log('Filtrar por continente:', continentCode);
   }
 
   toggleSelection(continentCode: string) {

@@ -1,14 +1,12 @@
 export interface ContinentModel {
-    data: DataContinent;
+  data: DataContinent;
 }
 
 export interface DataContinent {
-    continents: Continent[];
+  continents: Continent[];
 }
 
 export interface Continent {
-    name?: string;
-    code?: string;
+  name?: string;
+  code?: string;
 }
-
-

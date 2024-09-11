@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CountryItemComponent } from './country-item/country-item.component';
 import { SearchItemsComponent } from './search-items/search-items.component';
-import { FormsModule } from '@angular/forms';
 import { CountryDetailsComponent } from './country-details/country-details.component';
 import { AlphabetButtonsComponent } from './alphabet-buttons/alphabet-buttons.component';
 import { LoaderComponent } from './loader/loader.component';
-import { RouterLink } from '@angular/router';
 
+import { RouterLink } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,21 +18,16 @@ import { RouterLink } from '@angular/router';
     SearchItemsComponent,
     CountryDetailsComponent,
     AlphabetButtonsComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterLink
-     
-  ],
+  imports: [CommonModule, FormsModule, RouterLink],
   exports: [
     SidebarComponent,
     CountryItemComponent,
     SearchItemsComponent,
     CountryDetailsComponent,
     AlphabetButtonsComponent,
-    LoaderComponent
-  ]
+    LoaderComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

@@ -4,7 +4,7 @@
       <button
         *ngFor="let letter of alphabet"
         class="btn btn-sm rounded-full btn-outline-primary"
-        [ngClass]="{'btn-primary text-light': isSelected(letter)}"
+        [ngClass]="{ 'btn-primary text-light': isSelected(letter) }"
         (click)="onLetterClick(letter)"
       >
         {{ letter }}
